@@ -90,10 +90,11 @@ function pergunta()
 			--continua o while
 		else
 			print("Resposta inválida\n")
+			--fazer a pergunta de novo caso seja uma resposta inválida.
 			pergunta()
 		end
 	end
-	--fazer a pergunta de novo caso seja uma resposta inválida.
+	--fazer a pergunta a primeira vez.
 	pergunta()
 		end
 
@@ -108,11 +109,12 @@ function input()
 			print("Bom jogo, volte sempre!")
 		else
 			print("Resposta inválida\n")
+			--fazer a pergunta de novo caso seja uma resposta inválida.
 			input()
 
 		end
 	end
-	--fazer a pergunta de novo caso seja uma resposta inválida.
+	--fazer a pergunta a primeira vez.
 	input()
 end
 
