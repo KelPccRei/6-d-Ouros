@@ -26,7 +26,9 @@ function play()
 			end
 		--regra que termina o jogo
 		if (deck[random1] == "6 Ouros") then print("PENALTY, jogo terminado.") break end
+		--remover a carta que acabou de sair
 		table.remove(deck, random1)
+		--decrementar o tamanho do deck
 		decksize = decksize-1
 
 		random2 = math.random(1, decksize)
