@@ -6,7 +6,7 @@ function play()
 "2 Espadas", "3 Espadas", "4 Espadas", "5 Espadas", "6 Espadas", "7 Espadas", "8 Espadas", "9 Espadas", "10 Espadas", "Valete Espadas", "Dama Espadas", "Rei Espadas"
 ,"As Espadas",}
 
-	print("Bem vindo ao 6 D'Ouros, este jogo tem 4 jogadores e as seguintes regras:\n- A quem sair uma carta do naipe de Ouros(à exceção do 6) manda outro jogador beber 3 golos.\n- Quem tiver um Ás de qualquer naipe, pode inventar uma regra.(Sugestões: todos bebem numa determinada carta/falar outra lingua/nao poder dizer uma palavra)\n- A quem sair a carta 6 de Ouros, deverá beber um penalty!\n")
+	print("Bem vindo ao 6 D'Ouros, este jogo tem 4 jogadores e as seguintes regras:\n- A quem sair uma carta do naipe de Ouros(à exceção do 6) manda outro jogador beber 3 golos.\n- Quem tiver um Ás de qualquer naipe, pode inventar uma regra.(Sugestões: todos bebem numa determinada carta/falar outra lingua/não poder dizer uma palavra)\n- O jogo termina quando sair a carta 6 de Ouros e a quem sair, deverá beber um penalty!\n")
 
 
 
@@ -26,9 +26,7 @@ function play()
 			end
 		--regra que termina o jogo
 		if (deck[random1] == "6 Ouros") then print("PENALTY, jogo terminado.") break end
-		--remover a carta que acabou de sair
 		table.remove(deck, random1)
-		--decrementar o tamanho do deck
 		decksize = decksize-1
 
 		random2 = math.random(1, decksize)
@@ -92,11 +90,10 @@ function pergunta()
 			--continua o while
 		else
 			print("Resposta inválida\n")
-			--fazer a pergunta de novo caso seja uma resposta inválida.
 			pergunta()
 		end
 	end
-	--fazer a pergunta a primeira vez.
+	--fazer a pergunta de novo caso seja uma resposta inválida.
 	pergunta()
 		end
 
@@ -111,14 +108,14 @@ function input()
 			print("Bom jogo, volte sempre!")
 		else
 			print("Resposta inválida\n")
-			--fazer a pergunta de novo caso seja uma resposta inválida.
 			input()
 
 		end
 	end
-	--fazer a pergunta a primeira vez.
+	--fazer a pergunta de novo caso seja uma resposta inválida.
 	input()
 end
 
 --chamar função para começar o jogo.
 play()
+
