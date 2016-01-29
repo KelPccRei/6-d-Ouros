@@ -11,11 +11,9 @@ display.setStatusBar(display.HiddenStatusBar )
 -- include the Corona "composer" module
 local composer = require "composer"
 
-local photo1 = display.newImage("green1.jpg", 160, 100);
+local widget = require( "widget" )
 
-local button = display.newImage( "botaoVermelho1.png" )
-button.x = display.stageWidth / 2
-button.y = display.stageHeight - 18
+local photo1 = display.newImage("green1.jpg", 160, 100);
 
 local joga1 = display.newText("Jogador 1", 160, 10, native.systemFontBold, 12);
 
@@ -24,3 +22,201 @@ local joga2 = display.newText("Jogador 2", 50, 150, native.systemFontBold, 12);
 local joga3 = display.newText("Jogador 3", 270, 150, native.systemFontBold, 12);
 
 local joga4 = display.newText("Jogador 4", 160, 290, native.systemFontBold, 12);
+
+	--array que contém as 52 cartas
+local deck = {"2Copas", "3Copas", "4Copas", "5Copas", "6Copas", "7Copas", "8Copas", "9Copas", "10Copas", "ValeteCopas", "DamaCopas",
+"ReiCopas", "AsCopas", "2Ouros", "3Ouros", "4Ouros", "5Ouros", "6Ouros", "7Ouros", "8Ouros", "9Ouros", "10Ouros", "ValeteOuros", "DamaOuros",
+"ReiOuros", "AsOuros", "2Paus", "3Paus", "4Paus", "5Paus", "6Paus", "7Paus", "8Paus", "9Paus", "10Paus", "ValetePaus", "DamaPaus", "ReiPaus", "AsPaus",
+"2Espadas", "3Espadas", "4Espadas", "5Espadas", "6Espadas", "7Espadas", "8Espadas", "9Espadas", "10Espadas", "ValeteEspadas", "DamaEspadas", "ReiEspadas"
+,"AsEspadas"}
+
+local decksize = 52
+
+local x = true
+
+--function
+local function spress(event)
+
+display.remove( joga11 )
+display.remove( joga22 )
+display.remove( joga33 )
+display.remove( joga44 )
+
+	--while (decksize ~= 0) do
+		random1 = math.random(1, decksize)
+		print(deck[random1])
+		local deckImg = display.newImage(deck[random1] .. ".png")
+				deckImg.x = 160
+		deckImg.y = 80
+		--regra do às
+		if(deck[random1] == "AsEspadas" or deck[random1] == "AsOuros" or deck[random1] == "AsCopas" or deck[random1] == "AsPaus")
+			then print("O Jogador 1 inventa uma regra!")
+				local deckImg = display.newImage(deck[random1] .. ".png")
+				deckImg.x = 160
+		deckImg.y = 80
+				joga11 = display.newText("Inventa Regra", 160, 150, native.systemFontBold, 12);
+
+			 end
+
+		--regra do naipe de ouros
+		if(deck[random1] == "2Ouros" or deck[random1] == "3Ouros" or deck[random1] == "4Ouros" or deck[random1] == "5Ouros"
+		or deck[random1] == "7Ouros"or deck[random1] == "8Ouros" or deck[random1] == "9Ouros" or deck[random1] == "10Ouros"
+		or deck[random1] == "ValeteOuros" or deck[random1] == "DamaOuros" or deck[random1] == "ReiOuros")
+			then print("O Jogador 1 manda outro jogador beber 3 golos!")
+				local deckImg = display.newImage(deck[random1] .. ".png")
+				deckImg.x = 160
+		deckImg.y = 80
+				joga11 = display.newText("Manda beber", 160, 150, native.systemFontBold, 12);
+
+		--display.remove(joga11)
+			end
+		--regra que termina o jogo
+		if (deck[random1] == "6Ouros")
+			then print("PENALTY, jogo terminado.")
+			 local deckImg = display.newImage(deck[random1] .. ".png")
+			 deckImg.x = 160
+		deckImg.y = 80
+			 joga11 = display.newText("Penalty", 160, 150, native.systemFontBold, 12);
+
+
+			 composer.gotoScene( "scene1")
+
+
+		--display.remove(joga11)
+			end --break end
+
+
+
+		table.remove(deck, random1)
+		decksize = decksize-1
+
+
+
+		random2 = math.random(1, decksize)
+		print(deck[random2])
+		local deckImg2 = display.newImage(deck[random2] .. ".png")
+		deckImg2.x = 50
+		deckImg2.y = 220
+		--regra do às
+		if(deck[random2] == "AsEspadas" or deck[random2] == "AsOuros" or deck[random2] == "AsCopas" or deck[random2] == "AsPaus")
+			then print("O Jogador 2 inventa uma regra!")
+				local deckImg2 = display.newImage(deck[random2] .. ".png")
+		deckImg2.x = 50
+		deckImg2.y = 220
+				joga22 = display.newText("Inventa Regra", 50, 290, native.systemFontBold, 12);
+			 end
+		--regra do naipe de ouros
+		if(deck[random2] == "2Ouros" or deck[random2] == "3Ouros" or deck[random2] == "4Ouros" or deck[random2] == "5Ouros"
+		or deck[random2] == "7Ouros"or deck[random2] == "8Ouros" or deck[random2] == "9Ouros" or deck[random2] == "10Ouros"
+		or deck[random2] == "ValeteOuros" or deck[random2] == "DamaOuros" or deck[random2] == "ReiOuros")
+			then print("O Jogador 2 manda outro jogador beber 3 golos!")
+				local deckImg2 = display.newImage(deck[random2] .. ".png")
+		deckImg2.x = 50
+		deckImg2.y = 220
+				joga22 = display.newText("Manda beber", 50, 290, native.systemFontBold, 12);
+			end
+		--regra que termina o jogo
+		if (deck[random2] == "6Ouros")
+			then print("PENALTY, jogo terminado.")
+				local deckImg2 = display.newImage(deck[random2] .. ".png")
+		deckImg2.x = 50
+		deckImg2.y = 220
+				joga22 = display.newText("Penalty", 50, 290, native.systemFontBold, 12);
+
+
+
+				composer.gotoScene( "scene1")
+			end --break end
+
+		table.remove(deck, random2)
+		decksize = decksize-1
+
+
+
+		random3 = math.random(1, decksize)
+		print(deck[random3])
+						local deckImg3 = display.newImage(deck[random3] .. ".png")
+		deckImg3.x = 270
+		deckImg3.y = 220
+
+		--regra do às
+		if(deck[random3] == "AsEspadas" or deck[random3] == "AsOuros" or deck[random3] == "AsCopas" or deck[random3] == "AsPaus")
+			then print("O Jogador 3 inventa uma regra!")
+				local deckImg3 = display.newImage(deck[random3] .. ".png")
+		deckImg3.x = 270
+		deckImg3.y = 220
+		table.remove(deck, random3)
+				joga33 = display.newText("Inventa Regra", 270, 290, native.systemFontBold, 12);
+			 end
+		--regra do naipe de ouros
+		if(deck[random3] == "2Ouros" or deck[random3] == "3Ouros" or deck[random3] == "4Ouros" or deck[random3] == "5Ouros"
+		or deck[random3] == "7Ouros"or deck[random3] == "8Ouros" or deck[random3] == "9Ouros" or deck[random3] == "10Ouros"
+		or deck[random3] == "ValeteOuros" or deck[random3] == "DamaOuros" or deck[random3] == "ReiOuros")
+			then print("O Jogador 3 manda outro jogador beber 3 golos!")
+				local deckImg3 = display.newImage(deck[random3] .. ".png")
+		deckImg3.x = 270
+		deckImg3.y = 220
+		table.remove(deck, random3)
+				joga33 = display.newText("Manda beber", 270, 290, native.systemFontBold, 12);
+			end
+		--regra que termina o jogo
+		if (deck[random3] == "6Ouros")
+			then print("PENALTY, jogo terminado.")
+				local deckImg3 = display.newImage(deck[random3] .. ".png")
+		deckImg3.x = 270
+		deckImg3.y = 220
+		table.remove(deck, random3)
+				joga33 = display.newText("Penalty", 270, 290, native.systemFontBold, 12);
+
+
+
+				composer.gotoScene( "scene1")
+			end--break end
+
+		decksize = decksize-1
+
+
+
+		random4 = math.random(1, decksize)
+		print(deck[random4])
+		local deckImg4 = display.newImage(deck[random4] .. ".png")
+		deckImg4.x = 160
+		deckImg4.y = 360
+		--regra do às
+		if(deck[random4] == "AsEspadas" or deck[random4] == "AsOuros" or deck[random4] == "AsCopas" or deck[random4] == "AsPaus")
+			then print("O Jogador 4 inventa uma regra!")
+				local deckImg4 = display.newImage(deck[random4] .. ".png")
+		deckImg4.x = 160
+		deckImg4.y = 360
+				joga44 = display.newText("Inventa Regra", 160, 430, native.systemFontBold, 12);
+			 end
+		--regra do naipe de ouros
+		if(deck[random4] == "2Ouros" or deck[random4] == "3Ouros" or deck[random4] == "4Ouros" or deck[random4] == "5Ouros"
+		or deck[random4] == "7Ouros"or deck[random4] == "8Ouros" or deck[random4] == "9Ouros" or deck[random4] == "10Ouros"
+		or deck[random4] == "ValeteOuros" or deck[random4] == "DamaOuros" or deck[random4] == "ReiOuros")
+			then print("O Jogador 4 manda outro jogador beber 3 golos!")
+				local deckImg4 = display.newImage(deck[random4] .. ".png")
+		deckImg4.x = 160
+		deckImg4.y = 360
+				joga44 = display.newText("Manda beber", 160, 430, native.systemFontBold, 12);
+			end
+		--regra que termina o jogo
+		if (deck[random4] == "6Ouros")
+			then print("PENALTY, jogo terminado.")
+				local deckImg4 = display.newImage(deck[random4] .. ".png")
+				deckImg4.x = 160
+				deckImg4.y = 360
+				joga44 = display.newText("Penalty", 160, 430, native.systemFontBold, 12);
+
+				composer.gotoScene( "scene1")
+			end--break end
+
+		table.remove(deck, random4)
+		decksize = decksize-1
+
+end --fim da função spress
+
+
+	local button1 = widget.newButton {label="continuar", onPress=spress}
+	button1.x = display.stageWidth / 2
+	button1.y = display.stageHeight - 18
